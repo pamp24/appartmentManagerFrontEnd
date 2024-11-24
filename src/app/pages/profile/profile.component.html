@@ -1,0 +1,46 @@
+<div class="settings-container">
+  <h2>Πληροφορίες</h2>
+
+  <form (ngSubmit)="saveSettings()">
+    <fieldset>
+      <legend>Πληροφορίες Ενοίκου</legend>
+      <label for="name">Όνομα:</label>
+      <input type="text" id="name" [(ngModel)]="profile.name" name="name">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="profile.email" name="email">
+
+      <label for="phone">Τηλέφωνο:</label>
+      <input type="text" id="phone" [(ngModel)]="profile.phone" name="phone">
+    </fieldset>
+
+    <fieldset>
+      <legend>Πληροφορίες Διαμερίσματος</legend>
+      <label for="apartmentNumber">Αριθμός Διαμερίσματος</label>
+      <input type="text" id="apartmentNumber" [(ngModel)]="apartment.number" name="appartmentNumber">
+
+      <label for="size">Τετραγωνικά Μέτρα:</label>
+      <input type="text" id="size" [(ngModel)]="apartment.size" name="appartmentSize">
+
+      <label for="floor">Όροφος:</label>
+      <input type="text" id="floor" [(ngModel)]="apartment.floor" name="floor">
+    </fieldset>
+    
+    <fieldset>
+      <legend>Ειδοποιήσεις</legend>
+      <label>
+        <input type="checkbox" [(ngModel)]="notifications.email" name="emailNotifications">
+        Ειδοποιήσεις μέσω Email
+      </label>
+      <label>
+        <input type="checkbox" [(ngModel)]="notifications.sms" name="smsNotifications">
+        Ειδοποιήσεις μέσω SMS
+      </label>
+    </fieldset>
+
+    <button type="submit">Save Settings</button>
+  </form>
+
+
+
+

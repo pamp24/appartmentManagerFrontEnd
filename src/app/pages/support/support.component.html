@@ -1,0 +1,35 @@
+<div class="support-container">
+    <h2>Support</h2>
+  
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+        <div class="faq-question" (click)="toggleFAQ(i)">
+          {{ faq.question }}
+          <span class="toggle-icon">{{ faq.open ? '-' : '+' }}</span>
+        </div>
+        <div class="faq-answer" *ngIf="faq.open">
+          {{ faq.answer }}
+        </div>
+      </div>
+    </div>
+  
+    <!-- Support Form -->
+    <div class="support-form">
+      <h3>Contact Support</h3>
+      <form (ngSubmit)="submitSupportRequest()">
+        <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="supportForm.name" name="name" required />
+  
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="supportForm.email" name="email" required />
+  
+        <label for="message">Message</label>
+        <textarea id="message" [(ngModel)]="supportForm.message" name="message" rows="4" required></textarea>
+  
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  

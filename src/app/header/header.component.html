@@ -1,0 +1,47 @@
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzMatchRouter>
+      <a 
+      routerLink="/auth" 
+      routerLinkActive="active"
+      >Log in</a>
+    </li>
+    <li nz-menu-item nzMatchRouter >
+      <a
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      *ngIf="!isAythenticated">Dashboard</a>
+    </li>
+    <li nz-menu-item nzMatchRouter >
+      <a
+      routerLink="/payments"
+      routerLinkActive="active"
+      *ngIf="!isAythenticated">Πληρωμές</a>
+    </li>
+    <li nz-menu-item nzMatchRouter >
+      <a
+      routerLink="/residents"
+      routerLinkActive="active"
+      *ngIf="!isAythenticated">Κάτοικοι</a>
+    </li>
+    <li nz-menu-item nzMatchRouter >
+      <a
+      routerLink="/reports"
+      routerLinkActive="active"
+      *ngIf="!isAythenticated">Reports</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a
+      routerLink="/profile" 
+      routerLinkActive="active"
+      *ngIf="!isAythenticated">Προφίλ</a>
+    </li>
+    <li nz-menu-item nzMatchRouter>
+      <a
+      routerLink="/support" 
+      routerLinkActive="active"
+      *ngIf="!isAythenticated">Βοήθεια</a>
+    </li>
+  </ul>
+
+
+

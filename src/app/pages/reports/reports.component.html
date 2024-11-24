@@ -1,0 +1,21 @@
+<div class="reports-container">
+    <h2>Reports</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Total Payments ($)</th>
+          <th>Pending Bills ($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let summary of paymentsSummary">
+          <td>{{ summary.month }}</td>
+          <td>{{ summary.totalPayments }}</td>
+          <td>{{ summary.pendingBills }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,21 @@
+<div class="residents-container">
+    <h2>Residents</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Apartment</th>
+          <th>Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resident of residents">
+          <td>{{ resident.name }}</td>
+          <td>{{ resident.apartment }}</td>
+          <td>{{ resident.contact }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
