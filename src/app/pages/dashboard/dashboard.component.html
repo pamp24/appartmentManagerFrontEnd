@@ -1,41 +1,166 @@
 <div class="dashboard-container">
-    <h1>Welcome, {{ userName }}</h1>
-  
-    <div class="summary-section">
-      <div class="card">
-        <h2>Total Outstanding</h2>
-        <p class="amount">$ {{ outstandingAmount }}</p>
-      </div>
-      <div class="card">
-        <h2>Next Due Date</h2>
-        <p>{{ nextDueDate | date: 'fullDate' }}</p>
-      </div>
+  <h1>Dashboard</h1>
+
+  <!-- Overview Section -->
+  <div class="overview-section">
+    <div class="card">
+      <h3>Συνολικό ποσό</h3>
+      <p>{{ summarizeExpsenses() | currency }}</p>
     </div>
-  
-    <div class="actions-section">
-      <button class="pay-now-btn" (click)="payNow()">Pay Now</button>
+    <div class="card">
+      <h3>Συνολική πληρωμή</h3>
+      <p>{{ totalPaid | currency }}</p>
     </div>
-  
-    <div class="history-section">
-      <h2>Recent Payments</h2>
+    <div class="card">
+      <h3>Πληρωμή εώς</h3>
+      <p>{{ nextDueDate | date: 'mediumDate' }}</p>
+    </div>
+  </div>
+  <div class="actions-section">
+    <button class="pay-now-btn" (click)="payNow()">Πληρωμή</button>
+  </div>
+
+  <!-- Expense Breakdown -->
+  <div class="expense-section">
+    <h1>Κοινόχρηστα</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Κοινόχρηστα</th>
+          <th>Ποσό</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of expenses">
+          <td>{{ expense.category }}</td>
+          <td>{{ expense.amount | currency }}</td>
+        </tr>
+        <tr>
+          <th>Σύνολο:</th>
+          <th>{{summarizeExpsenses() | currency}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <!-- Elevator Expenses -->
+    <div class="expense-section">
+      <h1>Ασανσέρ</h1>
       <table>
         <thead>
           <tr>
-            <th>Utility</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Status</th>
+            <th>Ασανσέρ</th>
+            <th>Ποσό</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let payment of recentPayments">
-            <td>{{ payment.utility }}</td>
-            <td>{{ payment.amount | currency }}</td>
-            <td>{{ payment.date | date: 'shortDate' }}</td>
-            <td>{{ payment.status }}</td>
+          <tr *ngFor="let elevatorExpense of elevatorExpenses">
+            <td>{{ elevatorExpense.category }}</td>
+            <td>{{ elevatorExpense.amount| currency }}</td>
+          </tr>
+          <tr>
+            <th>Σύνολο:</th>
+            <th>{{summarizeEleExpsenses() | currency}}</th>
           </tr>
         </tbody>
       </table>
     </div>
+        <!-- Elevator Expenses -->
+        <div class="expense-section">
+          <h1>Θέρμανση</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Πετρέλαιο</th>
+                <th>Ποσό</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let heatingExpense of heatingExpenses">
+                <td>{{ heatingExpense.category }}</td>
+                <td>{{ heatingExpense.amount| currency }}</td>
+              </tr>
+              <tr>
+                <th>Σύνολο:</th>
+                <th>{{summarizeEleExpsenses() | currency}}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+  <!-- Resident Contributions -->
+  <div class="residents-section">
+    <h1>Ένοικοι</h1>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3" style="background-color: #e0e0e0;">Στοιχεία</th>
+          <th colspan="3" style="background-color: #d0d0d0;">Χιλιοστά</th>
+          <th colspan="2" style="background-color: #c0c0c0;">΄Ωρες</th>
+          <th colspan="13" style="background-color: #c0c0c0;">Ποσό Αναλογίας σε Ευρώ</th>
+        </tr>
+        <tr>
+          <th>ID</th>
+          <th>Όνομα</th>
+          <th>Αριθμός Διαμερίσματος</th>
+          <th>Χιλιοστά</th>
+          <th>Ασανσέρ</th>
+          <th>Θέρμανση</th>
+          <th>Ατομική</th>
+          <th>Μπόιλερ</th>
+          <th>ΚΟΙΝ/ΣΤΑ</th>
+          <th>ΑΣΑΝΣΕΡ</th>
+          <th>ΘΕΡΜ/ΝΣΗ</th>
+          <th>ΑΤΟΜΙΚΗ</th>
+          <th>BOILER</th>
+          <th>ΚΛΕΙΣΤΑ</th>
+          <th>ΕΙΔΙΚΕΣ</th>
+          <th>ΙΔΙΟΚΤΗΤΩΝ</th>
+          <th>ΙΣΑ ΜΕΡΗ</th>
+          <th>ΕΚΔΟΣΗ</th>
+          <th>ΑΥΤΟΤΕΛΗ</th>
+          <th>ΣTPOΓ</th>
+          <th>Σύνολο</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of residents">
+          <td>{{row.id}}</td>
+          <td>{{row.name}}</td>
+          <td>{{row.apartment}}</td>
+          <td>{{row.appartmentInstance}}</td>
+          <td>{{row.elevator}}</td>
+          <td>{{row.heating}}</td>
+          <td>{{row.individual}}</td>
+          <td>{{row.boiler}}</td>
+          <td>{{row.common}}</td>
+          <td>{{row.elevatorExpense}}</td>
+          <td>{{row.heatingExpense}}</td>
+          <td>{{row.individualExpense}}</td>
+          <td>{{row.boilerExpense}}</td>
+          <td>{{row.closed}}</td>
+          <td>{{row.special}}</td>
+          <td>{{row.owners}}</td>
+          <td>{{row.equalParts}}</td>
+          <td>{{row.issuance}}</td>
+          <td>{{row.autonomous}}</td>
+          <td>{{row.rounded}}</td>
+          <td>{{row.total}}</td>
+        </tr>
+        <tr>
+          <th colspan="20">Σύνολο:</th>
+          <th colspan="1">{{totalSum() | currency}}</th>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+
+  <!-- Announcements -->
+  <div class="announcements-section">
+    <h2>Ανακοινώσεις</h2>
+    <ul>
+      <li *ngFor="let announcement of announcements">
+        <strong>{{ announcement.date }}</strong>: {{ announcement.message }}
+      </li>
+    </ul>
+  </div>
+</div>

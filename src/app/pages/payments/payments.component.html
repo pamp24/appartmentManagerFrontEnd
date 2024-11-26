@@ -1,14 +1,14 @@
 <div class="payments-container">
-    <h2>Payment History</h2>
+    <h2>Ιστορικό Πληρωμών</h2>
   
     <table>
       <thead>
         <tr>
-          <th>Utility</th>
-          <th>Amount ($)</th>
-          <th>Date</th>
+          <th>Μήνας</th>
+          <th>Ποσό ($)</th>
+          <th>Ημερομηνία Πληρωμής</th>
           <th>Status</th>
-          <th>Action</th>
+          <th>Πληρωμή</th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +19,7 @@
           <td>{{ payment.status }}</td>
           <td>
             <button *ngIf="payment.status === 'Pending'" (click)="payNow(payment.utility)">
-              Pay Now
+              Πληρωμή
             </button>
           </td>
         </tr>

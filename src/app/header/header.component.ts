@@ -1,27 +1,20 @@
 import { Component } from '@angular/core';
-import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
-    NzPageHeaderModule, 
-    NzMenuModule,
-    NzSpaceModule,
-  ],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.less'
+  styleUrls: ['./header.component.less']
 })
 export class HeaderComponent {
-  isAythenticated = false;
-  
-  constructor(){}
+  appName = 'Apartment Manager';
+  isLoggedIn = true; // Example state, replace with actual authentication logic
+
+  logout() {
+    console.log('User logged out'); // Replace with actual logout logic
+  }
 }
+

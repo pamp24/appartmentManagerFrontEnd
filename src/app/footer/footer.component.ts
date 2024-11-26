@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [NzPageHeaderModule, NzMenuModule],
+  imports: [
+    CommonModule,
+
+  ],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.less'
+  styleUrls: ['./footer.component.less']
 })
 export class FooterComponent {
-
+  currentYear: number = new Date().getFullYear();
 }

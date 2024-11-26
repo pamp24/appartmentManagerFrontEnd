@@ -1,47 +1,34 @@
-  <ul nz-menu nzMode="horizontal">
-    <li nz-menu-item nzMatchRouter>
-      <a 
-      routerLink="/auth" 
-      routerLinkActive="active"
-      >Log in</a>
-    </li>
-    <li nz-menu-item nzMatchRouter >
-      <a
-      routerLink="/dashboard"
-      routerLinkActive="active"
-      *ngIf="!isAythenticated">Dashboard</a>
-    </li>
-    <li nz-menu-item nzMatchRouter >
-      <a
-      routerLink="/payments"
-      routerLinkActive="active"
-      *ngIf="!isAythenticated">Πληρωμές</a>
-    </li>
-    <li nz-menu-item nzMatchRouter >
-      <a
-      routerLink="/residents"
-      routerLinkActive="active"
-      *ngIf="!isAythenticated">Κάτοικοι</a>
-    </li>
-    <li nz-menu-item nzMatchRouter >
-      <a
-      routerLink="/reports"
-      routerLinkActive="active"
-      *ngIf="!isAythenticated">Reports</a>
-    </li>
-    <li nz-menu-item nzMatchRouter>
-      <a
-      routerLink="/profile" 
-      routerLinkActive="active"
-      *ngIf="!isAythenticated">Προφίλ</a>
-    </li>
-    <li nz-menu-item nzMatchRouter>
-      <a
-      routerLink="/support" 
-      routerLinkActive="active"
-      *ngIf="!isAythenticated">Βοήθεια</a>
-    </li>
-  </ul>
+<header class="header-container">
+  <!-- Logo Section -->
+  <div class="logo">
+    <a routerLink="/">
+      <!--<img src="assets/logo.png" alt="Logo" /> -->
+      <span>{{ appName }}</span>
+    </a>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="nav-menu">
+    <ul>
+      <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+      <li><a routerLink="/payments" routerLinkActive="active">Πληρωμές</a></li>
+      <li><a routerLink="/residents" routerLinkActive="active">Ένοικοι</a></li>
+      <li><a routerLink="/reports" routerLinkActive="active">Reports</a></li>
+      <li><a routerLink="/support" routerLinkActive="active">Βοήθεια</a></li>
+    </ul>
+  </nav>
+
+  <!-- User Actions -->
+  <div class="user-actions">
+    <span *ngIf="isLoggedIn">
+      <a routerLink="/profile">Προφίλ</a>
+      <button (click)="logout()">Logout</button>
+    </span>
+    <span *ngIf="!isLoggedIn">
+      <a routerLink="/login">Login</a>
+    </span>
+  </div>
+</header>
 
 
 

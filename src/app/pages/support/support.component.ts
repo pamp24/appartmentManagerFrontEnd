@@ -12,9 +12,9 @@ import { FormsModule } from '@angular/forms'; // For ngModel in the form
 export class SupportComponent {
   // FAQs
   faqs = [
-    { question: 'How can I pay my utility bills?', answer: 'You can pay through the Payments section.', open: false },
-    { question: 'What should I do if I encounter a technical issue?', answer: 'Please contact support through the form below.', open: false },
-    { question: 'Can I download my payment receipts?', answer: 'Yes, receipts are available in the Payments section.', open: false },
+    { question: 'Πως μπορώ να πληρώσω τα κοινόχρηστα μου?', answer: 'Μπορείτε να εκτελέσετε την πληρωμή από το Dashboard', open: false },
+    { question: 'Τι πρέπει να κάνω αν αντιμετωπίσω κάποιο πρόβλημα με την πληρωμή?', answer: 'Παρακαλώ επικοινωνήστε μαζί μας, μέσω της φόρμας παρακάτω.', open: false },
+    { question: 'Πως μπορώ να κατεβάσω την αποδείξη πληρωμής μου?', answer: 'Όλες οι αποδείξεις αποθηκεύονται στο Ιστορικό.', open: false },
   ];
 
   // Support form model
