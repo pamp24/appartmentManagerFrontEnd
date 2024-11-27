@@ -20,7 +20,7 @@
     <button class="pay-now-btn" (click)="payNow()">Πληρωμή</button>
   </div>
 
-  <!-- Expense Breakdown -->
+  <!-- General Expense Breakdown -->
   <div class="expense-section">
     <h1>Κοινόχρηστα</h1>
     <table>
@@ -42,52 +42,163 @@
       </tbody>
     </table>
   </div>
+
+  <!-- Elevator Expenses -->
+  <div class="expense-section">
+    <h1>Ασανσέρ</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Ασανσέρ</th>
+          <th>Ποσό</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let elevatorExpense of elevatorExpenses">
+          <td>{{ elevatorExpense.category }}</td>
+          <td>{{ elevatorExpense.amount| currency }}</td>
+        </tr>
+        <tr>
+          <th>Σύνολο:</th>
+          <th>{{summarizeEleExpsenses() | currency}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+        
     <!-- Elevator Expenses -->
+      <div class="expense-section">
+        <h1>Θέρμανση</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Πετρέλαιο</th>
+              <th>Ποσό</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let heatingExpense of heatingExpenses">
+              <td>{{ heatingExpense.category }}</td>
+              <td>{{ heatingExpense.amount| currency }}</td>
+            </tr>
+            <tr>
+              <th>Σύνολο:</th>
+              <th>{{summarizeEleExpsenses() | currency}}</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  <!-- Autonomy Expenses -->
+  <div class="expense-section">
+    <h1>Αυτονομία</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Αυτονομία</th>
+          <th>Ποσό</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let autonomyExpense of autonomyExpenses">
+          <td>{{ autonomyExpense.category}}</td>
+          <td>{{ autonomyExpense.amount| currency }}</td>
+        </tr>
+        <tr>
+          <th>Σύνολο:</th>
+          <th>{{summarizeAutonomyExpsenses() | currency}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+    <!-- Boiler Expenses -->
     <div class="expense-section">
-      <h1>Ασανσέρ</h1>
+      <h1>Boiler</h1>
       <table>
         <thead>
           <tr>
-            <th>Ασανσέρ</th>
+            <th>Boiler</th>
             <th>Ποσό</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let elevatorExpense of elevatorExpenses">
-            <td>{{ elevatorExpense.category }}</td>
-            <td>{{ elevatorExpense.amount| currency }}</td>
+          <tr *ngFor="let boilerExpense of boilerExpenses">
+            <td>{{ boilerExpense.category}}</td>
+            <td>{{ boilerExpense.amount| currency }}</td>
           </tr>
           <tr>
             <th>Σύνολο:</th>
-            <th>{{summarizeEleExpsenses() | currency}}</th>
+            <th>{{summarizeBoilerExpsenses() | currency}}</th>
           </tr>
         </tbody>
       </table>
     </div>
-        <!-- Elevator Expenses -->
-        <div class="expense-section">
-          <h1>Θέρμανση</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Πετρέλαιο</th>
-                <th>Ποσό</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let heatingExpense of heatingExpenses">
-                <td>{{ heatingExpense.category }}</td>
-                <td>{{ heatingExpense.amount| currency }}</td>
-              </tr>
-              <tr>
-                <th>Σύνολο:</th>
-                <th>{{summarizeEleExpsenses() | currency}}</th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-  <!-- Resident Contributions -->
+    <!-- Special Expenses -->
+    <div class="expense-section">
+    <h1>Ειδικές Δαπάνες</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Ειδικές Δαπάνες</th>
+          <th>Ποσό</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let specialExpense of specialExpenses">
+          <td>{{ specialExpense.category}}</td>
+          <td>{{ specialExpense.amount| currency }}</td>
+        </tr>
+        <tr>
+          <th>Σύνολο:</th>
+          <th>{{summarizeSpecialExpsenses() | currency}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+<!-- Owner Expenses -->
+<div class="expense-section">
+  <h1>Δαπάνες Ιδιοκτητών</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Δαπάνες Ιδιοκτητών</th>
+        <th>Ποσό</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ownersExpense of ownersExpenses">
+        <td>{{ ownersExpense.category}}</td>
+        <td>{{ ownersExpense.amount| currency }}</td>
+      </tr>
+      <tr>
+        <th>Σύνολο:</th>
+        <th>{{summarizeOwnersExpsenses() | currency}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Equal Expenses -->
+<div class="expense-section">
+  <h1>Δαπάνες σε Ίσα Μέρη</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Δαπάνες σε Ίσα Μέρη</th>
+        <th>Ποσό</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let equalExpense of equalExpenses"> 
+        <td>{{ equalExpense.category}}</td>
+        <td>{{ equalExpense.amount| currency }}</td>
+      </tr>
+      <tr>
+        <th>Σύνολο:</th>
+        <th>{{summarizeEqualExpsenses() | currency}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <!-- Resident Contributions Μεγάλος Πίνακας-->
   <div class="residents-section">
     <h1>Ένοικοι</h1>
     <table>
@@ -105,8 +216,8 @@
           <th>Χιλιοστά</th>
           <th>Ασανσέρ</th>
           <th>Θέρμανση</th>
-          <th>Ατομική</th>
-          <th>Μπόιλερ</th>
+          <th>Ατομική/Ώρες</th>
+          <th>Μπόιλερ/Ώρες</th>
           <th>ΚΟΙΝ/ΣΤΑ</th>
           <th>ΑΣΑΝΣΕΡ</th>
           <th>ΘΕΡΜ/ΝΣΗ</th>
@@ -128,8 +239,8 @@
           <td>{{row.name}}</td>
           <td>{{row.apartment}}</td>
           <td>{{row.appartmentInstance}}</td>
-          <td>{{row.elevator}}</td>
-          <td>{{row.heating}}</td>
+          <td>{{row.elevatorInstance}}</td>
+          <td>{{row.heatingInstance}}</td>
           <td>{{row.individual}}</td>
           <td>{{row.boiler}}</td>
           <td>{{row.common}}</td>
@@ -147,8 +258,25 @@
           <td>{{row.total}}</td>
         </tr>
         <tr>
-          <th colspan="20">Σύνολο:</th>
-          <th colspan="1">{{totalSum() | currency}}</th>
+          <th colspan="3">Σύνολο:</th>
+          <th>{{totalMilimitersMilimiters(residents)}}</th>
+          <th>{{totalElevatorMilimiters(residents)}}</th>
+          <th>{{totalHeatMilimiters(residents)}}</th>
+          <th></th>
+          <th></th>
+          <th>{{totalSumExpenses(residents)}}</th>
+          <th>{{totalElevExpenses(residents)}}</th>
+          <th>{{totalHeatExpenses(residents)}}</th>
+          <th>{{totalAutonomyExpenses(residents)}}</th>
+          <th>{{totalBoilerExpenses(residents)}}</th>
+          <th></th>
+          <th></th>
+          <th>{{totalOwnersExpenses(residents)}}</th>
+          <th>{{totalEqualExpenses(residents)}}</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th colspan="1"></th>
         </tr>
       </tbody>
     </table>
