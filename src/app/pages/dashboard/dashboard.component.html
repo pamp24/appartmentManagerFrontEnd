@@ -5,7 +5,7 @@
   <div class="overview-section">
     <div class="card">
       <h3>Συνολικό ποσό</h3>
-      <p>{{ summarizeExpsenses() | currency }}</p>
+      <p>{{totalSumOfExpenses() | currency}}</p>
     </div>
     <div class="card">
       <h3>Συνολική πληρωμή</h3>
@@ -21,6 +21,7 @@
   </div>
 
   <!-- General Expense Breakdown -->
+  <div class="expense-sections-container">
   <div class="expense-section">
     <h1>Κοινόχρηστα</h1>
     <table>
@@ -198,6 +199,7 @@
     </tbody>
   </table>
 </div>
+  </div>
   <!-- Resident Contributions Μεγάλος Πίνακας-->
   <div class="residents-section">
     <h1>Ένοικοι</h1>
@@ -267,16 +269,18 @@
           <th>{{totalSumExpenses(residents)}}</th>
           <th>{{totalElevExpenses(residents)}}</th>
           <th>{{totalHeatExpenses(residents)}}</th>
-          <th>{{totalAutonomyExpenses(residents)}}</th>
-          <th>{{totalBoilerExpenses(residents)}}</th>
           <th></th>
           <th></th>
+          <!-- <th>{{totalAutonomyExpenses(residents)}}</th>
+          <th>{{totalBoilerExpenses(residents)}}</th> -->
+          <th></th>
+          <th>{{totalScecialExpenses(residents)}}</th>
           <th>{{totalOwnersExpenses(residents)}}</th>
           <th>{{totalEqualExpenses(residents)}}</th>
           <th></th>
           <th></th>
           <th></th>
-          <th colspan="1"></th>
+          <th colspan="1">{{totalSumOfExpenses() | currency}}</th>
         </tr>
       </tbody>
     </table>
@@ -291,4 +295,3 @@
       </li>
     </ul>
   </div>
-</div>

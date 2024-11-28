@@ -161,13 +161,11 @@ export class DashboardComponent implements OnInit{
     return this.summarizeExpsenses() + 
     this.summarizeEleExpsenses() +
     this.summarizeHeatingExpsenses() +
-    this.summarizeAutonomyExpsenses() +
-    this.summarizeBoilerExpsenses() +
     this.summarizeSpecialExpsenses() +
     this.summarizeEqualExpsenses();
   }
 
-  totalsPerResident(residents: number[],){
+  totalsPerResident(residents: number[]){
     const length = residents.length;
     for (let i=0;i<residents.length;i++){
       if (!residents[i]) continue;
@@ -188,7 +186,14 @@ export class DashboardComponent implements OnInit{
       this.residents[i].special = totalSpecialSumPerCustomer;
       this.residents[i].owner = totalOwnersSumPerCustomer;
       this.residents[i].equalParts = totalEqualSumPerCustomer;
-
+      
+      this.residents[i].total = this.residents[i].common + 
+      this.residents[i].elevatorExpense + 
+      this.residents[i].heatingExpense +
+      this.residents[i].individualExpense +
+      this.residents[i].boilerExpense +
+      this.residents[i].special +
+      this.residents[i].equalParts;
     };
     return this.residents;
   }
@@ -281,9 +286,19 @@ export class DashboardComponent implements OnInit{
         totalOwnersSum += this.residents[i]?.owners;
       }
       return totalOwnersSum;
-  }  
+  } 
+    //Special
+    totalScecialExpenses(residents: any[]){
+      let totalSpecialSum = 0;
+        for(let i= 0; i<this.residents.length; i++){
+          if (!residents[i]) continue;
+          totalSpecialSum += this.residents[i]?.special;
+        }
+        return totalSpecialSum;
+    } 
   //Full Sum Per Customer
-  fullSumPerCustomer(fullSum: number){
+  fullSumPerCustomer(): number{
+    let fullSum = 0;
     for(let i = 0; i<this.residents.length; i++){
       fullSum = this.totalSumExpenses(this.residents[i])+
         this.totalElevExpenses([i])+
