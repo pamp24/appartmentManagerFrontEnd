@@ -1,39 +1,84 @@
+/* Reports Container */
 .reports-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  transition: transform 0.2s ease;
+}
+
+.reports-container:hover {
+  transform: translateY(-5px); /* Subtle hover effect */
+}
+
+.reports-container h2 {
+  font-size: 22px;
+  color: #007bff; /* Vibrant blue */
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Reports Table */
+.reports-container table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+.reports-container th,
+.reports-container td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #d0e2f2; /* Light blue-gray border */
+}
+
+.reports-container th {
+  background-color: #e1ecf9; /* Light blue header */
+  color: #1a3e5c;
+  font-weight: bold;
+}
+
+.reports-container tr:nth-child(even) {
+  background-color: #f8f9fc; /* Alternate row color */
+}
+
+.reports-container tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Button Styling */
+.reports-container button {
+  padding: 8px 15px;
+  font-size: 0.9em;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reports-container button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Subtle hover lift */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .reports-container table {
+    font-size: 0.85em; /* Smaller font size on mobile */
   }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
+
+  .reports-container th, 
+  .reports-container td {
+    padding: 8px;
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: auto;
+
+  .reports-container button {
+    width: 100%; /* Full width button on mobile */
+    font-size: 0.85em;
   }
-  
-  th, td {
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-  }
-  
-  td {
-    font-size: 14px;
-  }
-  
-  tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #fff;
-  }
-  
+}

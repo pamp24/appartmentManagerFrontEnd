@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AnalyticsComponent } from '../analitics/analytics.component';
 
 @Component({
   selector: 'app-residents',
@@ -14,7 +15,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   templateUrl: './residents.component.html',
   styleUrl: './residents.component.less'
 })
-export class ResidentsComponent {
+export class ResidentsComponent{
+  
   residents = [
     { name: 'Alice Johnson', apartment: '101', contact: 'alice.j@example.com' },
     { name: 'Bob Smith', apartment: '102', contact: 'bob.s@example.com' },

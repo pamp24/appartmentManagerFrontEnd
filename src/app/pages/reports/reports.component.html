@@ -1,19 +1,27 @@
 <div class="reports-container">
     <h2>Reports</h2>
-  
     <table>
       <thead>
         <tr>
-          <th>Month</th>
-          <th>Total Payments ($)</th>
-          <th>Pending Bills ($)</th>
+          <th>Μήνας</th>
+          <th>Ποσό ($)</th>
+          <th>Ημερομηνία Πληρωμής</th>
+          <th>Status</th>
+          <th>Πληρωμή</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let summary of paymentsSummary">
-          <td>{{ summary.month }}</td>
-          <td>{{ summary.totalPayments }}</td>
-          <td>{{ summary.pendingBills }}</td>
+        <tr *ngFor="let payment of payments">
+          <td>{{ payment.month }}</td>
+          <td>{{ payment.amount | currency:'USD':'symbol' }}</td>
+          <td>{{ payment.date | date:'mediumDate' }}</td>
+          <td>{{ payment.status }}</td>
+          <td nzType="vertical-align-bottom" nzTheme="outline">
+            <button 
+            *ngIf="payment.status === 'Pending'" (click)="payNow(payment.month)">
+              Πληρωμή
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

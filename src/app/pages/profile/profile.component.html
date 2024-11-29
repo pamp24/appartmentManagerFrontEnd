@@ -1,45 +1,36 @@
-<div class="settings-container">
-  <h2>Πληροφορίες</h2>
+<div class="profile-container">
+  <h1>Προφίλ Χρήστη</h1>
 
-  <form (ngSubmit)="saveSettings()">
-    <fieldset>
-      <legend>Πληροφορίες Ενοίκου</legend>
-      <label for="name">Όνομα:</label>
-      <input type="text" id="name" [(ngModel)]="profile.name" name="name">
+  <!-- User Information Section -->
+  <div class="user-info-section">
+    <h2>Προσωπικές Πληροφορίες</h2>
+    <ul>
+      <li><strong>Όνομα:</strong> {{ userProfile.name }}</li>
+      <li><strong>Email:</strong> {{ userProfile.email }}</li>
+      <li><strong>Τηλέφωνο:</strong> {{ userProfile.phone }}</li>
+    </ul>
+  </div>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" [(ngModel)]="profile.email" name="email">
+  <!-- Apartment Information Section -->
+  <div class="apartment-info-section">
+    <h2>Πληροφορίες Διαμερίσματος</h2>
+    <ul>
+      <li><strong>Αριθμός Διαμερίσματος:</strong> {{ apartmentInfo.number }}</li>
+      <li><strong>Τετραγωνικά Μέτρα:</strong> {{ apartmentInfo.size }} m²</li>
+      <li><strong>Αριθμός Ενοίκων:</strong> {{ apartmentInfo.occupants }}</li>
+    </ul>
+  </div>
 
-      <label for="phone">Τηλέφωνο:</label>
-      <input type="text" id="phone" [(ngModel)]="profile.phone" name="phone">
-    </fieldset>
-
-    <fieldset>
-      <legend>Πληροφορίες Διαμερίσματος</legend>
-      <label for="apartmentNumber">Αριθμός Διαμερίσματος</label>
-      <input type="text" id="apartmentNumber" [(ngModel)]="apartment.number" name="appartmentNumber">
-
-      <label for="size">Τετραγωνικά Μέτρα:</label>
-      <input type="text" id="size" [(ngModel)]="apartment.size" name="appartmentSize">
-
-      <label for="floor">Όροφος:</label>
-      <input type="text" id="floor" [(ngModel)]="apartment.floor" name="floor">
-    </fieldset>
-    
-    <fieldset>
-      <legend>Ειδοποιήσεις</legend>
-      <label>
-        <input type="checkbox" [(ngModel)]="notifications.email" name="emailNotifications">
-        Ειδοποιήσεις μέσω Email
-      </label>
-      <label>
-        <input type="checkbox" [(ngModel)]="notifications.sms" name="smsNotifications">
-        Ειδοποιήσεις μέσω SMS
-      </label>
-    </fieldset>
-
-    <button type="submit">Save Settings</button>
-  </form>
+  <!-- Building Information Section -->
+  <div class="building-info-section">
+    <h2>Πληροφορίες Κτιρίου</h2>
+    <ul>
+      <li><strong>Όνομα Κτιρίου:</strong> {{ buildingInfo.name }}</li>
+      <li><strong>Διεύθυνση:</strong> {{ buildingInfo.address }}</li>
+      <li><strong>Συνολικά Διαμερίσματα:</strong> {{ buildingInfo.totalApartments }}</li>
+    </ul>
+  </div>
+</div>
 
 
 

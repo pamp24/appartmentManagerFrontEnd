@@ -12,14 +12,10 @@ export const AppRoutes: Routes = [
         canActivate:[AuthGuard],
            loadChildren: () => import('./pages/dashboard/dashboard.routes').then(m => m.DashboardRoutes)},
 
-    {path: 'payments',
+    {path: 'analytics',
         canActivate:[AuthGuard],
-            loadChildren: () => import('./pages/payments/payments.routes').then(m => m.PaymentsRoutes)},
+            loadChildren: () => import('./pages/analitics/analytics.routes').then(m => m.AnalyticsRoutes)},
 
-    {path: 'payments',
-        canActivate:[AuthGuard],
-            loadChildren: () => import('./pages/payments/payments.routes').then(m => m.PaymentsRoutes)},
-    
     {path: 'residents',
         canActivate:[AuthGuard],
             loadChildren: () => import('./pages/residents/residents.routes').then(m => m.ResidentsRoutes)},

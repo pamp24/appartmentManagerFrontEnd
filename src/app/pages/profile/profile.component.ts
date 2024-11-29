@@ -39,40 +39,28 @@ import { NzListModule } from 'ng-zorro-antd/list';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent {
-  profile = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+1234567890'
-  };
-  step = 0;
-  date = null;
+    userProfile = {
+      name: 'Γιάννης Παπαδόπουλος',
+      email: 'giannis@example.com',
+      phone: '6971234567',
+      picture: '',
+    };
   
-  apartment = {
-    number: 'Ι1',
-    size: '42',
-    floor: '4'
-  }
-
-  house = {
-    name: 'Sunny Villa',
-    location: 'Miami, FL',
-    price: 500000,
-    owner: 'John Doe',
-    description: 'A beautiful villa with modern amenities and a stunning view of the ocean.',
-    images: [
-      'assets/house1.jpg',
-      'assets/house2.jpg',
-      'assets/house3.jpg'
-    ]
-  };
-
-  notifications = {
-    email: true,
-    sms: false
-  };
-
-  saveSettings() {
-    alert('Settings saved successfully!');
-  }
+    apartmentInfo = {
+      number: 'Διαμέρισμα 2A',
+      size: 90,
+      occupants: 4,
+    };
+  
+    buildingInfo = {
+      name: 'Κτίριο Αλεξάνδρου',
+      address: 'Οδός Σταδίου 23, Αθήνα',
+      totalApartments: 12,
+    };
+  
+  
+    submitSupportRequest() {
+      // Form submission logic (optional)
+    }
 }
 
