@@ -81,7 +81,7 @@ export class AnalyticsComponent implements OnInit{
     {
       id: '001',
       name: 'ΛΑΙΜΟΣ',
-      apartment: 'Υ1',
+      appartment: 'Υ1',
       appartmentInstance: 20,
       elevatorInstance: 0,
       heatingInstance: 60,
@@ -104,7 +104,7 @@ export class AnalyticsComponent implements OnInit{
     {
       id: '002',
       name: 'ΠΑΠΑΝΔΡΕΟΥ',
-      apartment: 'O1',
+      appartment: 'Ι1',
       appartmentInstance: 50,
       elevatorInstance: 50,
       heatingInstance: 10,
@@ -127,7 +127,7 @@ export class AnalyticsComponent implements OnInit{
     {
       id: '003',
       name: 'ΝΙΚΟΛΑΟΥ',
-      apartment: 'O2',
+      appartment: 'O2',
       appartmentInstance: 30,
       elevatorInstance: 50,
       heatingInstance: 30,
@@ -274,7 +274,7 @@ export class AnalyticsComponent implements OnInit{
     let totalOwnersSum = 0;
       for(let i= 0; i<this.residents.length; i++){
         if (!residents[i]) continue;
-        totalOwnersSum += this.residents[i]?.owners;
+        totalOwnersSum += this.residents[i]?.owner;
       }
       return totalOwnersSum;
   } 

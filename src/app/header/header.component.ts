@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent {
-  appName = 'Apartment Manager';
+  appName = 'Appartment Manager';
   isLoggedIn = true; // Example state, replace with actual authentication logic
 
   logout() {

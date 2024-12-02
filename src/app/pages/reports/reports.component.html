@@ -1,29 +1,39 @@
 <div class="reports-container">
-    <h2>Reports</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Μήνας</th>
-          <th>Ποσό ($)</th>
-          <th>Ημερομηνία Πληρωμής</th>
-          <th>Status</th>
-          <th>Πληρωμή</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let payment of payments">
-          <td>{{ payment.month }}</td>
-          <td>{{ payment.amount | currency:'USD':'symbol' }}</td>
-          <td>{{ payment.date | date:'mediumDate' }}</td>
-          <td>{{ payment.status }}</td>
-          <td nzType="vertical-align-bottom" nzTheme="outline">
-            <button 
-            *ngIf="payment.status === 'Pending'" (click)="payNow(payment.month)">
+  <h2>Reports</h2>
+
+  <table class="reports-table">
+    <thead>
+      <tr>
+        <th>Μήνας</th>
+        <th>Ποσό ($)</th>
+        <th>Ημερομηνία Πληρωμής</th>
+        <th>Status</th>
+        <th>Πληρωμή</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.month }}</td>
+        <td>{{ payment.amount | currency:'USD':'symbol' }}</td>
+        <td>{{ payment.date | date:'mediumDate' }}</td>
+        <td>{{ payment.status }}</td>
+        <td class="action-buttons">
+          <button 
+            *ngIf="payment.status === 'Paid'" 
+            (click)="print(payment.month)"
+            class="print-btn">
+              Εκτύπωση
+          </button>
+          <button 
+            *ngIf="payment.status === 'Pending'" 
+            (click)="payNow(payment.month)"
+            class="pay-btn">
               Πληρωμή
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
   

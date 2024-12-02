@@ -32,7 +32,8 @@ export class DashboardComponent extends AnalyticsComponent{
   //Announcements
   announcements = [
     { date: '15/07/2024', message: 'Μηνιαία Συνάντηση 17:00-18:00.' },
-    { date: '10/07/2024', message: 'Καθαρισμός κοινόχρηστων χώρων.' }
+    { date: '10/07/2024', message: 'Καθαρισμός κοινόχρηστων χώρων.' },
+    { date: 'Πρόσθετα',message:'ΕΠΙΒΑΡΥΝΣΗ ΑΠΟ ΚΛΕΙΣΤΑ ΔΙΑΜΕΡΙΣΜΑΤΑ K 100 % A 100 % Θ 50 %'},
   ];
 }
 

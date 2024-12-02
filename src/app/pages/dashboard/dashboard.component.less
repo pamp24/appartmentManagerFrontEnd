@@ -1,18 +1,16 @@
-/* General Dashboard Container */
+/* Dashboard Container */
 .dashboard-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Roboto', Arial, sans-serif;
-  background-color: #eef2f6; /* Light blue-gray background */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  background-color: #f5f7fa;
 }
 
-/* Section Headings */
+/* Page Heading */
 .dashboard-container h1 {
   font-size: 26px;
-  color: #1a3e5c; /* Darker blue */
+  color: #007bff;
   margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
@@ -23,14 +21,14 @@
   background-color: #ffffff;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
 }
 
 .announcements-section h2 {
-  font-size: 22px;
-  color: #007bff;
-  margin-bottom: 15px;
+  font-size: 20px;
+  color: #1a3e5c;
+  margin-bottom: 10px;
   text-align: center;
   font-weight: bold;
 }
@@ -45,11 +43,10 @@
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .announcements-section li strong {
-  font-weight: bold;
   color: #007bff;
 }
 
@@ -62,36 +59,56 @@
 }
 
 .card {
-  background: linear-gradient(135deg, #cfe7f9, #edf2fb); /* Soft gradient */
-  padding: 20px;
+  background: linear-gradient(135deg, #ffffff, #f5f7fa); /* Subtle gradient */
   border-radius: 12px;
-  width: 30%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  font-size: 1em;
-  box-shadow: 0 4px 8px rgba(14, 13, 13, 0.1);
-  transition: transform 0.2s ease;
+  padding: 25px 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
 }
 
-.card:hover {
-  transform: translateY(-5px); /* Subtle hover effect */
+.card:before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(0, 123, 255, 0.05); /* Light blue overlay */
+  transform: rotate(45deg);
+  z-index: 0;
 }
 
 .card h3 {
   font-size: 18px;
   color: #1a3e5c;
   margin-bottom: 10px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
 }
 
 .card p {
-  font-size: 1.5em;
+  font-size: 24px;
   font-weight: bold;
   color: #007bff;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Action Button */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Actions Section */
 .actions-section {
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 .pay-now-btn {
@@ -102,16 +119,17 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .pay-now-btn:hover {
   background-color: #0056b3;
-  transform: translateY(-3px); /* Subtle hover lift */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive Design for Smaller Screens */
+/* Responsive Design */
 @media (max-width: 768px) {
   .overview-section {
     flex-direction: column;
@@ -123,7 +141,81 @@
   }
 
   .pay-now-btn {
-    width: 100%; /* Full width button on mobile */
+    width: 100%;
   }
 }
+
+/* Residents Section */
+.residents-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 30px;
+}
+
+.residents-section h1 {
+  font-size: 22px;
+  color: #007bff;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Residents Table */
+.residents-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.residents-section th,
+.residents-section td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #d0e2f2;
+  font-size: 0.6em;
+}
+
+.residents-section th {
+  background-color: #e1ecf9;
+  color: #1a3e5c;
+  font-weight: bold;
+}
+
+.residents-section tr:nth-child(even) {
+  background-color: #f8f9fc;
+}
+
+.residents-section tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Total Row Styling */
+.residents-section tbody tr:last-child th {
+  background-color: #d9ecff;
+  font-weight: bold;
+}
+
+/* Hover Effect on Rows */
+.residents-section tbody tr:hover {
+  background-color: #d9ecff;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .overview-section {
+    flex-direction: column;
+  }
+
+  .overview-section .card {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .actions-section button {
+    width: 100%;
+  }
+}
+
 
