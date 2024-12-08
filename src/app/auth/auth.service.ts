@@ -1,42 +1,43 @@
-import { Injectable, inject } from '@angular/core';
+// auth.service.ts
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
-@Injectable({providedIn: 'root'})
-
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-  private http = inject(HttpClient);
-  private router = inject(Router);
 
-  private apiUrl = 'https://example.com/api'; // Replace with your backend URL
-  private tokenKey = 'authToken';
-    user: any;
+  private apiUrl = 'http://localhost:8080/auth';  // Your backend URL
 
-  // Login method
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
-      tap((response: any) => {
-        if (response.token) {
-          localStorage.setItem(this.tokenKey, response.token);
-        }
-      })
-    );
+  constructor(private http: HttpClient) { }
+
+  login(username: string, password: string): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/login`, { username, password });
   }
 
-  // Logout method
+  signup(username: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/signup`, { username, password });
+  }
+
+  // Store the JWT token in local storage
+  saveToken(token: string): void {
+    localStorage.setItem('authToken', token);
+  }
+
+  // Get the JWT token from local storage
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  // Log out by removing the token
   logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['/login']);
+    localStorage.removeItem('authToken');
   }
 
   // Check if user is authenticated
   isAuthenticated(): boolean {
-    return !!localStorage.getItem(this.tokenKey);
-  }
-
-  // Get token
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    const token = this.getToken();
+    return token !== null;
   }
 }

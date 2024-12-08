@@ -1,71 +1,44 @@
-import { Component, Injectable } from '@angular/core';
-import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { CommonModule } from '@angular/common';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+
 
 @Injectable({
   providedIn: 'root',
 })
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    RouterLink, 
-    RouterLinkActive, 
-    NzIconModule, 
-    NzLayoutModule, 
-    NzMenuModule, 
-    NzFormModule, 
-    NzInputModule, 
-    NzButtonModule,
-    NzCheckboxModule,
-  ],
+    CommonModule,
+    ReactiveFormsModule],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.less'],
 })
 
-export class AuthComponent {
-  checked = true;
-  isLogInMode = true;
-  
-  constructor(private fb: NonNullableFormBuilder) {}
+export class AuthComponent implements OnInit{
+  loginForm!: FormGroup;
+  isLoggedinMode = false;
 
-  onSwitchMode(){
-      this.isLogInMode = !this.isLogInMode;
-    }
+  constructor(private fb: FormBuilder) {}
 
-  validateForm: FormGroup<{
-    userName: FormControl<string>;
-    password: FormControl<string>;
-    remember: FormControl<boolean>;
-  }> = this.fb.group({
-    userName: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    remember: [true]
-  });
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      remember: [false],
+    });
+  }
+  onSwitchMode() {
+    this.isLoggedinMode = !this.isLoggedinMode;
+  }
 
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value);
     }
   }
-  
 
-  
 }
 

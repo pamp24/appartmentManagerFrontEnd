@@ -11,10 +11,5 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
   appName = 'Appartment Manager';
-  isLoggedIn = true; // Example state, replace with actual authentication logic
-
-  logout() {
-    console.log('User logged out'); // Replace with actual logout logic
-  }
 }
 

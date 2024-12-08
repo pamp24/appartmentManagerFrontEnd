@@ -20,15 +20,11 @@
 
   <!-- User Actions -->
   <div class="user-actions">
-    <span *ngIf="isLoggedIn">
-      <a routerLink="/profile">Προφίλ</a>
-      <button (click)="logout()">Logout</button>
-    </span>
-    <span *ngIf="!isLoggedIn">
-      <a routerLink="/login">Login</a>
-    </span>
+    <a routerLink="/profile">Προφίλ</a>
+    <button routerLink="/login">Login</button>
   </div>
-</header>
+    
+
 
 
 

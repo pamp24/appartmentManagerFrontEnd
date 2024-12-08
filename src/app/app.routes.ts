@@ -32,7 +32,7 @@ export const AppRoutes: Routes = [
         canActivate:[AuthGuard],
             loadChildren: () => import('./pages/support/support.routes').then(m => m.SupportRoutes)},
             
-    {path: 'auth',
+    {path: 'login',
         loadChildren: () => import('./auth/auth.routes').then(m => m.AuthRoutes)},
 
 ];  

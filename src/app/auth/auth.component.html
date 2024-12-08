@@ -1,42 +1,125 @@
-<form nz-form  class="login-form" (ngSubmit)="submitForm()">
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your E-mail!">
-      <nz-input-group nzPrefixIcon="mail">
-        <input
-        type="email" 
-        nz-input formControlName = "email" 
-        placeholder="E-mail" 
-        required/>
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
-        <nz-input-group nzPrefixIcon="lock">
-          <input 
-          type="password" 
-          nz-input formControlName="password" 
-          placeholder="Password"
-          name="password"
-          required />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <div nz-row class="login-form-margin">
-      <div nz-col [nzSpan]="12">
-        <label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
-        </label>
-      </div>
-      <div nz-col [nzSpan]="12">
-        <a class="login-form-forgot">Forgot password</a>
+<form [formGroup]="loginForm" class="login-form">
+  <!-- Email Field -->
+  <div class="form-group">
+    <label for="email" class="form-label">E-mail</label>
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="E-mail"
+      class="form-control"
+      required
+    />
+    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+      Παρακαλώ συμπληρώστε το Email σας!
+    </div>
+  </div>
+
+  <!-- Password Field -->
+  <div class="form-group">
+    <label for="password" class="form-label">Κωδικός</label>
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      placeholder="Κωδικός"
+      class="form-control"
+      required
+    />
+    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+      Παρακαλώ συμπληρώστε τον Κωδικό σας!
+    </div>
+  </div>
+
+  <!-- Signup Fields -->
+  <div *ngIf="isLoggedinMode">
+    <div class="form-group">
+      <label for="confirmPassword" class="form-label">Επαλήθευση Κωδικού*</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        formControlName="password"
+        placeholder="Επαλήθευση Κωδικού"
+        class="form-control"
+        required
+      />
+      <div *ngIf="loginForm.get('confirmPassword')?.invalid && loginForm.get('confirmPassword')?.touched" class="error">
+        Παρακαλώ επαληθεύστε τον Κωδικό σας!
       </div>
     </div>
+
+    <div class="form-group">
+      <label for="name" class="form-label">Όνομα*</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Όνομα"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lastName" class="form-label">Επίθετο*</label>
+      <input
+        id="lastName"
+        type="text"
+        formControlName="lastName"
+        placeholder="Επίθετο"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber" class="form-label">Τηλέφωνο*</label>
+      <input
+        id="phoneNumber"
+        type="text"
+        formControlName="phoneNumber"
+        placeholder="Τηλέφωνο"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        id="isManager"
+        type="checkbox"
+        formControlName="isManager"
+        class="custom-checkbox"
+      />
+      <label for="isManager" class="form-label">Είμαι Διαχειριστής</label>
+    </div>
+  </div>
+
+  <!-- Remember Me and Forgot Password -->
+  <div class="form-group remember-forgot" *ngIf="!isLoggedinMode">
+    <div class="remember-section">
+      <input
+        id="remember"
+        type="checkbox"
+        formControlName="remember"
+        class="custom-checkbox"
+      />
+      <label for="remember" class="remember-label">Θυμήσου τον Κωδικό</label>
+    </div>
+    <a href="#" class="forgot-password">Ξεχάσατε τον Κωδικό?</a>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="button-container">
     <button 
-        nz-button class="login-form-button login-form-margin" 
-        [nzType]="'primary'"
-        >{{isLogInMode ? 'Log In' : 'Sign Up'}}
+      class="btn btn-primary" 
+      type="submit"
+      [disabled]="loginForm.valid">{{ !isLoggedinMode ? 'Σύνδεση':'Εγγραφή'}}</button> 
+    <button 
+      class="btn btn-secondary"
+      type="button" 
+      (click)="onSwitchMode()">
+      {{!isLoggedinMode ? 'Εγγραφή':'Σύνδεση'}}
     </button>
-    Switch to: 
-    <a  (click)="onSwitchMode()">{{ isLogInMode ? 'Sign Up' : 'Log In'}}</a>
-  </form>
+  </div>
+</form>
