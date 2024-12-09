@@ -14,7 +14,7 @@ export const AppRoutes: Routes = [
 
     {path: 'analytics',
         canActivate:[AuthGuard],
-            loadChildren: () => import('./pages/analitics/analytics.routes').then(m => m.AnalyticsRoutes)},
+            loadChildren: () => import('./pages/analytics/analytics.routes').then(m => m.AnalyticsRoutes)},
 
     {path: 'residents',
         canActivate:[AuthGuard],

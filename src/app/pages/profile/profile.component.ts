@@ -12,6 +12,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { AnalyticsComponent } from '../analytics/analytics.component';
 
 @Component({
   selector: 'app-profile',
@@ -38,19 +39,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.less']
 })
-export class ProfileComponent {
-    userProfile = {
-      name: 'Γιάννης Παπαδόπουλος',
-      email: 'giannis@example.com',
-      phone: '6971234567',
-      picture: '',
-    };
-  
-    apartmentInfo = {
-      number: 'Διαμέρισμα 2A',
-      size: 90,
-      occupants: 4,
-    };
+export class ProfileComponent extends AnalyticsComponent {
   
     buildingInfo = {
       name: 'Κτίριο Αλεξάνδρου',

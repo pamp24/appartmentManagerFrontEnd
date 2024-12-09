@@ -4,31 +4,39 @@
   <!-- User Information Section -->
   <div class="user-info-section">
     <h2>Προσωπικές Πληροφορίες</h2>
-    <ul>
-      <li><strong>Όνομα:</strong> {{ userProfile.name }}</li>
-      <li><strong>Email:</strong> {{ userProfile.email }}</li>
-      <li><strong>Τηλέφωνο:</strong> {{ userProfile.phone }}</li>
-    </ul>
+    <ng-container *ngFor="let resident of residents">
+      <ul *ngIf="resident.id === '003'">
+        <li><strong>Όνομα:</strong> {{ resident.name }}</li>
+        <li><strong>Email:</strong> {{ resident.email }}</li>
+        <li><strong>Τηλέφωνο:</strong> {{ resident.phone }}</li>
+      </ul>
+    </ng-container>
   </div>
 
   <!-- Apartment Information Section -->
   <div class="apartment-info-section">
     <h2>Πληροφορίες Διαμερίσματος</h2>
-    <ul>
-      <li><strong>Αριθμός Διαμερίσματος:</strong> {{ apartmentInfo.number }}</li>
-      <li><strong>Τετραγωνικά Μέτρα:</strong> {{ apartmentInfo.size }} m²</li>
-      <li><strong>Αριθμός Ενοίκων:</strong> {{ apartmentInfo.occupants }}</li>
-    </ul>
+    <ng-container *ngFor="let resident of residents">
+      <ul *ngIf="resident.id === '003'">
+        <li><strong>Αριθμός Διαμερίσματος:</strong> {{ resident.appartment }}</li>
+        <li><strong>Όροφος: </strong>{{resident.floor}}</li>
+        <li><strong>Τετραγωνικά Μέτρα:</strong> {{ resident.squareMeters }} m²</li>
+      </ul>
+    </ng-container>
   </div>
 
   <!-- Building Information Section -->
   <div class="building-info-section">
     <h2>Πληροφορίες Κτιρίου</h2>
-    <ul>
-      <li><strong>Όνομα Κτιρίου:</strong> {{ buildingInfo.name }}</li>
-      <li><strong>Διεύθυνση:</strong> {{ buildingInfo.address }}</li>
-      <li><strong>Συνολικά Διαμερίσματα:</strong> {{ buildingInfo.totalApartments }}</li>
-    </ul>
+    <ng-container *ngFor="let resident of residents">
+      <ul *ngIf="resident.id === '003'">
+        <li><strong>Όνομα Κτιρίου:</strong> {{ building.name }}</li>
+        <li><strong>Διεύθυνση:</strong> {{building.address}} - {{building.addressNumber}}</li>
+        <li><strong>Συνολικά Διαμερίσματα:</strong> {{ building.numberOfAppartments}}</li>
+        <li><strong>Συνολικά Τετραγωνικά:</strong> {{ building.buldingSquareMeters}} m²</li>
+        <li><strong>Συνολικοί Όροφοι:</strong> {{ building.numberOfFloors}}</li>
+      </ul>
+    </ng-container>
   </div>
 </div>
 

@@ -81,7 +81,10 @@ export class AnalyticsComponent implements OnInit{
     {
       id: '001',
       name: 'ΛΑΙΜΟΣ',
+      email: 'laimos@gmail.com',
+      phone: '6982293212',
       appartment: 'Υ1',
+      isManager: false,
       appartmentInstance: 20,
       elevatorInstance: 0,
       heatingInstance: 60,
@@ -104,7 +107,10 @@ export class AnalyticsComponent implements OnInit{
     {
       id: '002',
       name: 'ΠΑΠΑΝΔΡΕΟΥ',
+      email: 'papadreou@gmail.com',
+      phone: '6942445508',
       appartment: 'Ι1',
+      isManager: false,
       appartmentInstance: 50,
       elevatorInstance: 50,
       heatingInstance: 10,
@@ -127,7 +133,12 @@ export class AnalyticsComponent implements OnInit{
     {
       id: '003',
       name: 'ΝΙΚΟΛΑΟΥ',
+      email: 'nikolaou@yahoo.gr',
+      phone: '699876543',
+      floor: 2,
       appartment: 'O2',
+      isManager: true,
+      squareMeters: 100,
       appartmentInstance: 30,
       elevatorInstance: 50,
       heatingInstance: 30,
@@ -148,6 +159,24 @@ export class AnalyticsComponent implements OnInit{
       total: 0
     }
   ];
+  
+   building = {
+    id: '1',
+    name: 'Κωνσταστίνου Λούρου',
+    address: 'Κωνσταντίνου Λούρου',
+    addressNumber: '1',
+    numberOfFloors: 5,
+    numberOfAppartments: 20,
+    buldingSquareMeters: 15000,
+    yearBuilt: 2010,
+    type: 'Κατοικίες - Γραφεία',
+    owner: 'Τεστ',
+    isUnderConstruction: false,
+    amenities: ['Πάρκινγκ', 'Γυμαστήριο', 'Πισίνα', 'Παιδική Χαρά'],
+    buildingManager: 'Βενιζέλος',
+
+  };
+  
   totalSumOfExpenses(){
     return this.summarizeExpsenses() + 
     this.summarizeEleExpsenses() +
