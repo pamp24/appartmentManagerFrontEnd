@@ -12,10 +12,7 @@ import { LayoutComponent } from './layout/layout.component';
     selector: 'app-root',
     standalone: true,
     imports: [
-      CommonModule, 
-      RouterOutlet, 
-      RouterLink, 
-      RouterLinkActive, 
+      CommonModule,  
       NzIconModule, 
       NzLayoutModule, 
       NzMenuModule,

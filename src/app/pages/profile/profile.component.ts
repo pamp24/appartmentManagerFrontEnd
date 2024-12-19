@@ -19,9 +19,6 @@ import { AnalyticsComponent } from '../analytics/analytics.component';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet, 
-    RouterLink, 
-    RouterLinkActive,
     FormsModule,
     NzAvatarModule,
     ReactiveFormsModule, 

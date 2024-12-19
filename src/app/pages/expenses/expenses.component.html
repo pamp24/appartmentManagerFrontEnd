@@ -1,0 +1,88 @@
+<div class="form-container">
+  <h1>Έκδοση Κοινοχρήστων</h1>
+  
+  <form [formGroup]="valuesForm" (ngSubmit)="onSubmit()">
+    <!-- Form Array for Dynamic Items -->
+    <div formArrayName="items">
+      <div
+        *ngFor="let item of items.controls; let i = index"
+        [formGroupName]="i"
+        class="item-row"
+      >
+        <label for="category-{{ i }}">Κατηγορία</label>
+        <select
+          id="category-{{ i }}"
+          formControlName="category"
+          class="form-control"
+        >
+          <option value="">Επιλέξτε Κατηγορία</option>
+          <option value="Κοινόχρηστα">Κοινόχρηστα</option>
+          <option value="Ασανσέρ">Ασανσέρ</option>
+          <option value="Θέρμανση">Θέρμανση</option>
+          <option value="Αυτονομία">Αυτονομία</option>
+          <option value="Boiler">Boiler</option>
+          <option value="Ειδικές Δαπάνες">Ειδικές Δαπάνες</option>
+          <option value="Δαπάνες Ιδιοκτητών">Δαπάνες Ιδιοκτητών</option>
+          <option value="Δαπάνες σε Ίσα Μέρη">Δαπάνες σε Ίσα Μέρη</option>
+        </select>
+        <div *ngIf="item.get('category')?.touched && item.get('category')?.invalid">
+          <small class="error">Η Κατηγορία είναι υποχρεωτική</small>
+        </div>
+
+        <label for="name-{{ i }}">Όνομα Στοιχείου</label>
+        <input
+          id="name-{{ i }}"
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Π.χ. Συνεργείο Καθαρισμού"
+        />
+        <div *ngIf="item.get('name')?.touched && item.get('name')?.invalid">
+          <small class="error">Το Όνομα Στοιχείου είναι υποχρεωτικό</small>
+        </div>
+
+        <label for="value-{{ i }}">Τιμή</label>
+        <input
+          id="value-{{ i }}"
+          type="number"
+          formControlName="value"
+          class="form-control"
+          placeholder="Π.χ. 100 $"
+        />
+        <div *ngIf="item.get('value')?.touched && item.get('value')?.invalid">
+        <small class="error" *ngIf="item.get('value')?.hasError('required')">
+          Η Τιμή είναι υποχρεωτική
+        </small>
+        <small class="error" *ngIf="item.get('value')?.hasError('min')">
+          Η Τιμή πρέπει να είναι μεγαλύτερη από 0
+        </small>
+      </div>
+
+        <div class="button-row">
+          <!-- Add Item Button -->
+          <button type="button" (click)="addItem()" class="add-btn"  [disabled]="items.length >= 10">
+            Προσθήκη Εξόδου
+          </button>
+
+          <!-- Delete Button -->
+          <button type="button" (click)="removeItem(i)" class="remove-btn" [disabled]="items.length === 1">
+            Διαγραφή
+          </button>
+
+          <!-- Upload Button -->
+          <button
+            type="button"
+            (click)="onUpload(i)"
+            class="upload-btn"
+          >
+            Μεταφόρτωση Αρχείου
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="submit-btn">Αποθήκευση</button>
+    </div>
+  </form>
+</div>

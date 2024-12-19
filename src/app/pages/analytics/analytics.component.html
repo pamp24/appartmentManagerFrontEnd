@@ -216,28 +216,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of residents">
-            <td>{{row.id}}</td>
-            <td>{{row.name}}</td>
-            <td>{{row.apartment}}</td>
-            <td>{{row.appartmentInstance}}</td>
-            <td>{{row.elevatorInstance}}</td>
-            <td>{{row.heatingInstance}}</td>
-            <td>{{row.individual}}</td>
-            <td>{{row.boiler}}</td>
-            <td>{{row.common}}</td>
-            <td>{{row.elevatorExpense}}</td>
-            <td>{{row.heatingExpense}}</td>
-            <td>{{row.individualExpense}}</td>
-            <td>{{row.boilerExpense}}</td>
-            <td>{{row.closed}}</td>
-            <td>{{row.special}}</td>
-            <td>{{row.owner}}</td>
-            <td>{{row.equalParts}}</td>
-            <td>{{row.issuance}}</td>
-            <td>{{row.autonomous}}</td>
-            <td>{{row.rounded}}</td>
-            <td>{{row.total}}</td>
+          <tr *ngFor="let resident of residents">
+            <td>{{resident.id}}</td>
+            <td>{{resident.name}}</td>
+            <td>{{resident.apartment}}</td>
+            <td>{{resident.apartmentInstance}}</td>
+            <td>{{resident.elevatorInstance}}</td>
+            <td>{{resident.heatingInstance}}</td>
+            <td>{{resident.individual}}</td>
+            <td>{{resident.boiler}}</td>
+            <td>{{resident.common}}</td>
+            <td>{{resident.elevatorExpense}}</td>
+            <td>{{resident.heatingExpense}}</td>
+            <td>{{resident.individualExpense}}</td>
+            <td>{{resident.boilerExpense}}</td>
+            <td>{{resident.closed}}</td>
+            <td>{{resident.special}}</td>
+            <td>{{resident.owner}}</td>
+            <td>{{resident.equalParts}}</td>
+            <td>{{resident.issuance}}</td>
+            <td>{{resident.autonomous}}</td>
+            <td>{{resident.rounded}}</td>
+            <td>{{resident.total}}</td>
           </tr>
           <tr>
             <th colspan="3">Σύνολο:</th>
@@ -251,8 +251,6 @@
             <th>{{totalHeatExpenses(residents)}}</th>
             <th></th>
             <th></th>
-            <!-- <th>{{totalAutonomyExpenses(residents)}}</th>
-            <th>{{totalBoilerExpenses(residents)}}</th> -->
             <th></th>
             <th>{{totalScecialExpenses(residents)}}</th>
             <th>{{totalOwnersExpenses(residents)}}</th>

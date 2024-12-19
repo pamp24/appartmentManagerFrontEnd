@@ -1,5 +1,5 @@
 <div class="dashboard-container">
-  <h1>Dashboard</h1>
+  <h1>Πίνακας Ελέγχου</h1>
   <!-- Announcements -->
   <div class="announcements-section">
     <h2>Ανακοινώσεις</h2>
@@ -11,20 +11,28 @@
   </div>
 
   <!-- Overview Section -->
-  <div class="overview-section">
-    <div class="card">
-      <h3>Συνολικό ποσό</h3>
-      <p>{{totalSumOfExpenses() | currency}}</p>
-    </div>
-    <div class="card">
-      <h3>Συνολική πληρωμή</h3>
-      <p>{{ totalPaid | currency }}</p>
-    </div>
-    <div class="card">
-      <h3>Πληρωμή εώς</h3>
-      <p>{{ nextDueDate | date: 'mediumDate' }}</p>
-    </div>
-  </div>
+   <ng-container *ngFor="let resident of residents">
+    <ng-container *ngIf="resident.id === '001'">
+      <div class="overview-section" >
+        <div class="card">
+          <h3>Συνολικό ποσό Πολυκατοικίας</h3>
+          <p>{{totalSumOfExpenses() | currency}}</p>
+        </div>
+        <div class="card">
+          <h3>Συνολική πληρωμή Ενοίκου</h3>
+          <p>{{ resident.total| currency }}</p>
+        </div>
+        <div class="card">
+          <h3>Συνολική πληρωμή Ιδιοκτήτη</h3>
+          <p>{{ resident.owner | currency }}</p>
+        </div>
+        <div class="card">
+          <h3>Πληρωμή εώς</h3>
+          <p>{{ nextDueDate | date: 'mediumDate' }}</p>
+        </div>
+      </div>
+    </ng-container>
+   </ng-container>
   <div class="actions-section">
     <button class="pay-now-btn" (click)="payNow()">Πληρωμή</button>
   </div>
@@ -32,7 +40,28 @@
   <div class="residents-section">
     <ng-container *ngFor="let resident of residents">
       <ng-container *ngIf="resident.id === '001'">
-        <h1>Όνομα Ενοίκου: {{resident.name}}, Αριθμός Διαμερίσματος: {{resident.appartment}}</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Όνομα</th>
+              <th>Διαμέρισμα</th>
+              <th>Πολυκατοικία</th>
+              <th>Διεύθυνση</th>
+              <th>Αριθμός</th>
+              <th>Περιοχή</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>{{ resident.name }}</td>
+                <td>{{ resident.apartment }}</td>
+                <td>{{ building.name}}</td>
+                <td>{{ building.address}}</td>
+                <td>{{ building.addressNumber}}</td>
+                <td>{{ building.district}}</td>
+              </tr>
+          </tbody>
+        </table>
       </ng-container>
     </ng-container>
     
@@ -70,11 +99,11 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let resident of residents">
-          <tr *ngIf="resident.id === '003'">
+          <tr *ngIf="resident.id == '001'">
             <td>{{resident.id}}</td>
             <td>{{resident.name}}</td>
             <td>{{resident.apartment}}</td>
-            <td>{{resident.appartmentInstance}}</td>
+            <td>{{resident.apartmentInstance}}</td>
             <td>{{resident.elevatorInstance}}</td>
             <td>{{resident.heatingInstance}}</td>
             <td>{{resident.individual}}</td>
@@ -106,8 +135,6 @@
           <th>{{totalHeatExpenses(residents)}}</th>
           <th></th>
           <th></th>
-          <!-- <th>{{totalAutonomyExpenses(residents)}}</th>
-          <th>{{totalBoilerExpenses(residents)}}</th> -->
           <th></th>
           <th>{{totalScecialExpenses(residents)}}</th>
           <th>{{totalOwnersExpenses(residents)}}</th>
@@ -120,3 +147,172 @@
       </tbody>
     </table>
   </div>
+  
+  <form [formGroup]="buildingForm" (ngSubmit)="onSubmit()" class="building-form">
+    <h2>Εισαγωγή Επόμενης Πολυκατοικίας</h2>
+    <div class="overview-section">
+    <div class="card" (click)="showForm = !showForm"> 
+      <h3>Προσθήκη</h3>    
+    </div>
+  </div>
+  <ng-container *ngIf="showForm" >
+    <!-- City -->
+    <div class="form-group">
+      <label for="city">Πόλη</label>
+      <input
+        id="city"
+        type="text"
+        formControlName="city"
+        class="form-control"
+        placeholder="Πόλη"
+        required
+      />
+      <div *ngIf="buildingForm.get('city')?.invalid && buildingForm.get('city')?.touched" class="error">
+        Η Πόλη είναι υποχρεωτική.
+      </div>
+    </div>
+    
+    <!-- State -->
+    <div class="form-group" >
+      <label for="state">Νομός</label>
+      <input
+        id="state"
+        type="text"
+        formControlName="state"
+        class="form-control"
+        placeholder="Νομός"
+        required
+      />
+      <div *ngIf="buildingForm.get('state')?.invalid && buildingForm.get('state')?.touched" class="error">
+        Ο Νομός είναι υποχρεωτικός.
+      </div>
+    </div>    
+
+    <!-- District -->
+    <div class="form-group" >
+      <label for="district">Περιοχή</label>
+      <input
+        id="district"
+        type="text"
+        formControlName="district"
+        class="form-control"
+        placeholder="Περιοχή"
+        required
+      />
+      <div *ngIf="buildingForm.get('district')?.invalid && buildingForm.get('district')?.touched" class="error">
+        Η Περιοχή είναι υποχρεωτική.
+      </div>
+    </div>    
+
+    <!-- ΤΚ -->
+    <div class="form-group" >
+      <label for="tk">Ταχυδρομικός Κωδικός</label>
+      <input
+        id="tk"
+        type="text"
+        formControlName="tk"
+        class="form-control"
+        placeholder="Ταχυδρομικός Κωδικός"
+        required
+      />
+      <div *ngIf="buildingForm.get('tk')?.invalid && buildingForm.get('tk')?.touched" class="error">
+        Ο Ταχυδρομικός Κωδικός είναι υποχρεωτικός.
+      </div>
+    </div>
+
+    <!-- Street -->
+    <div class="form-group" >
+      <label for="street">Οδός</label>
+      <input
+        id="street"
+        type="text"
+        formControlName="street"
+        class="form-control"
+        placeholder="Οδός"
+        required
+      />
+      <div *ngIf="buildingForm.get('street')?.invalid && buildingForm.get('street')?.touched" class="error">
+        Η Οδός είναι υποχρεωτική.
+      </div>
+    </div>
+
+    <!-- Street Number -->
+    <div class="form-group">
+      <label for="streetNumber">Αριθμός</label>
+      <input
+        id="streetNumber"
+        type="text"
+        formControlName="streetNumber"
+        class="form-control"
+        placeholder="Αριθμός"
+        required
+      />
+      <div *ngIf="buildingForm.get('streetNumber')?.invalid && buildingForm.get('streetNumber')?.touched" class="error">
+        Ο αριθμός είναι υποχρεωτικός.
+      </div>
+    </div>
+  
+    <!-- Number of Apartments -->
+    <div class="form-group">
+      <label for="numApartments">Αριθμός Διαμερισμάτων</label>
+      <input
+        id="numApartments"
+        type="number"
+        formControlName="numApartments"
+        class="form-control"
+        placeholder="Αριθμός Διαμερισμάτων"
+        required
+      />
+      <div *ngIf="buildingForm.get('numApartments')?.invalid && buildingForm.get('numApartments')?.touched" class="error">
+        Ο αριθμός Διαμερισμάτων είναι υποχρεωτικός.
+      </div>
+    </div>
+  
+    <!-- Number of Parkings -->
+    <div class="form-group">
+      <label for="numParkings">Αριθμός Θέσεων Πάρκινγκ</label>
+      <input
+        id="numParkings"
+        type="number"
+        formControlName="numParkings"
+        class="form-control"
+        placeholder="Αριθμός Θέσεων Πάρκινγκ"
+        required
+      />
+      <div *ngIf="buildingForm.get('numParkings')?.invalid && buildingForm.get('numParkings')?.touched" class="error">
+        Ο αριθμός Θέσεων Πάρκινγ είναι υποχρεωτικός.
+      </div>
+    </div>
+  
+    <!-- Square Meters -->
+    <div class="form-group">
+      <label for="squareMeters">Συνολικά Τετραγωνικά Πολυκατοικίας</label>
+      <input
+        id="squareMeters"
+        type="number"
+        formControlName="squareMeters"
+        class="form-control"
+        placeholder="Συνολικά Τετραγωνικά Πολυκατοικίας"
+        required
+      />
+      <div *ngIf="buildingForm.get('squareMeters')?.invalid && buildingForm.get('squareMeters')?.touched" class="error">
+        Τα Συνολικά Τετραγωνικά Πολυκατοικίας είναι υποχρεωτικά.
+      </div>
+    </div>
+  
+    <!-- Heating Options -->
+    <div class="form-group">
+      <label for="heating">Είδος Θέρμανσης</label>
+      <select id="heating" formControlName="heating" class="form-control" required multiple [(ngModel)]="selectedHeatingOptions ">
+        <option value="" disabled>Είδος Θέρμανσης </option>
+        <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+      </select>
+      <div *ngIf="buildingForm.get('heating')?.invalid && buildingForm.get('heating')?.touched" class="error">
+        Ο τύπος Θέρμανσης είναι υποχρεωτικός.
+      </div>
+    </div>
+    <!-- button -->
+    <div class="actions-section">
+      <button class="pay-now-btn">Εισαγωγή</button>
+    </div>
+</ng-container>

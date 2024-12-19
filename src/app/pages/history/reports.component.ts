@@ -1,28 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { NzColDirective } from 'ng-zorro-antd/grid';
 
-import { NzTableModule } from 'ng-zorro-antd/table';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzTagModule } from 'ng-zorro-antd/tag';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms'; // Needed for [(ngModel)]
-import { BrowserModule } from '@angular/platform-browser';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-reports',
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet, 
-    RouterLink, 
-    RouterLinkActive,
-
   ], 
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.less']
+  templateUrl: './history.component.html',
+  styleUrls: ['./history.component.less']
 })
 export class ReportsComponent {
     payments = [

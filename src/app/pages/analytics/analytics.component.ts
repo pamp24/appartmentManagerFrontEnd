@@ -7,9 +7,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet, 
-    RouterLink, 
-    RouterLinkActive,
   ],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.less'
@@ -83,9 +80,9 @@ export class AnalyticsComponent implements OnInit{
       name: 'ΛΑΙΜΟΣ',
       email: 'laimos@gmail.com',
       phone: '6982293212',
-      appartment: 'Υ1',
+      apartment: 'Υ1',
       isManager: false,
-      appartmentInstance: 20,
+      apartmentInstance: 20,
       elevatorInstance: 0,
       heatingInstance: 60,
       individual: 0,
@@ -109,9 +106,9 @@ export class AnalyticsComponent implements OnInit{
       name: 'ΠΑΠΑΝΔΡΕΟΥ',
       email: 'papadreou@gmail.com',
       phone: '6942445508',
-      appartment: 'Ι1',
+      apartment: 'Ι1',
       isManager: false,
-      appartmentInstance: 50,
+      apartmentInstance: 50,
       elevatorInstance: 50,
       heatingInstance: 10,
       individual: 0,
@@ -136,10 +133,10 @@ export class AnalyticsComponent implements OnInit{
       email: 'nikolaou@yahoo.gr',
       phone: '699876543',
       floor: 2,
-      appartment: 'O2',
+      apartment: 'O2',
       isManager: true,
       squareMeters: 100,
-      appartmentInstance: 30,
+      apartmentInstance: 30,
       elevatorInstance: 50,
       heatingInstance: 30,
       individual: 100,
@@ -165,9 +162,14 @@ export class AnalyticsComponent implements OnInit{
     name: 'Κωνσταστίνου Λούρου',
     address: 'Κωνσταντίνου Λούρου',
     addressNumber: '1',
-    numberOfFloors: 5,
-    numberOfAppartments: 20,
+    city: 'Αθήνα',
+    state: 'Αττική',
+    district: 'Αμπελόκηποι',
+    tk: '11528',
     buldingSquareMeters: 15000,
+    numberOfFloors: 5,
+    numberOfApartments: 20,
+    parkingSpots: 5,
     yearBuilt: 2010,
     type: 'Κατοικίες - Γραφεία',
     owner: 'Τεστ',
@@ -189,7 +191,7 @@ export class AnalyticsComponent implements OnInit{
     const length = residents.length;
     for (let i=0;i<residents.length;i++){
       if (!residents[i]) continue;
-      const totalExpeSumPerCustomer = this.summarizeExpsenses()/100 * this.residents[i].appartmentInstance;
+      const totalExpeSumPerCustomer = this.summarizeExpsenses()/100 * this.residents[i].apartmentInstance;
       const totalElevSumPerCustomer = (this.summarizeEleExpsenses()/100) * this.residents[i].elevatorInstance;
       const totalHeatSumPerCustomer = (this.summarizeHeatingExpsenses()/100) * this.residents[i].heatingInstance;
       const totalAutonomySumPerCustomer = (this.residents[i].individual/this.summarizeAutonomyExpsenses())* this.residents[i].individual;
@@ -223,7 +225,7 @@ export class AnalyticsComponent implements OnInit{
     let totalMilimitersSum = 0;
     for(let i= 0; i<this.residents.length; i++){
       if (!residents[i]) continue;
-      totalMilimitersSum += this.residents[i]?.appartmentInstance;
+      totalMilimitersSum += this.residents[i]?.apartmentInstance;
     }
     return totalMilimitersSum;
   }

@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
 
 
 export const AppRoutes: Routes = [
@@ -8,6 +10,9 @@ export const AppRoutes: Routes = [
      redirectTo:'dashboard', 
      pathMatch:'full',
      },
+     {path: 'expenses',
+        canActivate:[AuthGuard],
+           loadChildren: () => import('./pages/expenses/expenses.routes').then(m => m.ExpensesRoutes)},
     {path: 'dashboard',
         canActivate:[AuthGuard],
            loadChildren: () => import('./pages/dashboard/dashboard.routes').then(m => m.DashboardRoutes)},
@@ -20,9 +25,9 @@ export const AppRoutes: Routes = [
         canActivate:[AuthGuard],
             loadChildren: () => import('./pages/residents/residents.routes').then(m => m.ResidentsRoutes)},
 
-    {path: 'reports',
+    {path: 'history',
         canActivate:[AuthGuard],
-            loadChildren: () => import('./pages/reports/reports.routes').then(m => m.ReportsRoutes)},
+            loadChildren: () => import('./pages/history/history.routes').then(m => m.HistoryRoutes)},
 
     {path: 'profile',
         canActivate:[AuthGuard],

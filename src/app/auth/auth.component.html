@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" class="login-form">
+<form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
   <!-- Email Field -->
   <div class="form-group">
     <label for="email" class="form-label">E-mail</label>
@@ -8,9 +8,10 @@
       formControlName="email"
       placeholder="E-mail"
       class="form-control"
+      [class.is-invalid]="isTouchedAndInvalid('email')"
       required
     />
-    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+    <div *ngIf="isTouchedAndInvalid('email')" class="error">
       Παρακαλώ συμπληρώστε το Email σας!
     </div>
   </div>
@@ -24,79 +25,16 @@
       formControlName="password"
       placeholder="Κωδικός"
       class="form-control"
+      [class.is-invalid]="isTouchedAndInvalid('password')"
       required
     />
-    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+    <div *ngIf="isTouchedAndInvalid('password')" class="error">
       Παρακαλώ συμπληρώστε τον Κωδικό σας!
     </div>
   </div>
 
-  <!-- Signup Fields -->
-  <div *ngIf="isLoggedinMode">
-    <div class="form-group">
-      <label for="confirmPassword" class="form-label">Επαλήθευση Κωδικού*</label>
-      <input
-        id="confirmPassword"
-        type="password"
-        formControlName="password"
-        placeholder="Επαλήθευση Κωδικού"
-        class="form-control"
-        required
-      />
-      <div *ngIf="loginForm.get('confirmPassword')?.invalid && loginForm.get('confirmPassword')?.touched" class="error">
-        Παρακαλώ επαληθεύστε τον Κωδικό σας!
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="name" class="form-label">Όνομα*</label>
-      <input
-        id="name"
-        type="text"
-        formControlName="name"
-        placeholder="Όνομα"
-        class="form-control"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="lastName" class="form-label">Επίθετο*</label>
-      <input
-        id="lastName"
-        type="text"
-        formControlName="lastName"
-        placeholder="Επίθετο"
-        class="form-control"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="phoneNumber" class="form-label">Τηλέφωνο*</label>
-      <input
-        id="phoneNumber"
-        type="text"
-        formControlName="phoneNumber"
-        placeholder="Τηλέφωνο"
-        class="form-control"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <input
-        id="isManager"
-        type="checkbox"
-        formControlName="isManager"
-        class="custom-checkbox"
-      />
-      <label for="isManager" class="form-label">Είμαι Διαχειριστής</label>
-    </div>
-  </div>
-
-  <!-- Remember Me and Forgot Password -->
-  <div class="form-group remember-forgot" *ngIf="!isLoggedinMode">
+  <!-- Remember Me -->
+  <div class="form-group remember-forgot">
     <div class="remember-section">
       <input
         id="remember"
@@ -114,12 +52,12 @@
     <button 
       class="btn btn-primary" 
       type="submit"
-      [disabled]="loginForm.valid">{{ !isLoggedinMode ? 'Σύνδεση':'Εγγραφή'}}</button> 
+      [disabled]="!loginForm.valid">{{ isLoginMode ? 'Σύνδεση' : 'Εγγραφή' }}</button> 
     <button 
       class="btn btn-secondary"
       type="button" 
       (click)="onSwitchMode()">
-      {{!isLoggedinMode ? 'Εγγραφή':'Σύνδεση'}}
+      {{ isLoginMode ? 'Εγγραφή' : 'Σύνδεση' }}
     </button>
   </div>
 </form>

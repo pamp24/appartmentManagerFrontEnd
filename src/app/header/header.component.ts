@@ -11,5 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
   appName = 'Appartment Manager';
+
+  
 }
 

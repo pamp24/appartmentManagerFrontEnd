@@ -1,44 +1,58 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from './auth.service';
 import { CommonModule } from '@angular/common';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-
-
-@Injectable({
-  providedIn: 'root',
-})
 
 @Component({
-  selector: 'login',
+  selector: 'app-auth',
   standalone: true,
-  imports: [
+  imports:[
     CommonModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+
+  ],
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.less'],
+  styleUrls: ['./auth.component.less']
 })
+export class AuthComponent {
+  isLoginMode: boolean = true;
+  loginForm: FormGroup;
+  error: string | null = null;
 
-export class AuthComponent implements OnInit{
-  loginForm!: FormGroup;
-  isLoggedinMode = false;
-
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       remember: [false],
     });
   }
+
   onSwitchMode() {
-    this.isLoggedinMode = !this.isLoggedinMode;
+    this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+  onSubmit() {
+    if (this.loginForm.invalid) return;
+
+    const { email, password } = this.loginForm.value;
+
+    if (this.isLoginMode) {
+      this.authService.login(email, password).subscribe({
+        next: (response) => {
+          console.log('Επιτυχής Σύνδεση', response);
+        },
+        error: (err) => {
+          this.error = 'Αποτυχία σύνδεσης. Παρακαλώ δοκιμάστε ξανά.';
+          console.error('Αποτυχής Σύνδεση', err);
+        },
+      });
+    } else {
+    
     }
   }
 
+  isTouchedAndInvalid(controlName: string): any {
+    const control = this.loginForm.get(controlName);
+    return control?.touched && control.invalid;
+  }
 }
-

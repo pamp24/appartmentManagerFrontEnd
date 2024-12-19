@@ -18,7 +18,7 @@
     <h2>Πληροφορίες Διαμερίσματος</h2>
     <ng-container *ngFor="let resident of residents">
       <ul *ngIf="resident.id === '003'">
-        <li><strong>Αριθμός Διαμερίσματος:</strong> {{ resident.appartment }}</li>
+        <li><strong>Αριθμός Διαμερίσματος:</strong> {{ resident.apartment }}</li>
         <li><strong>Όροφος: </strong>{{resident.floor}}</li>
         <li><strong>Τετραγωνικά Μέτρα:</strong> {{ resident.squareMeters }} m²</li>
       </ul>
@@ -32,7 +32,7 @@
       <ul *ngIf="resident.id === '003'">
         <li><strong>Όνομα Κτιρίου:</strong> {{ building.name }}</li>
         <li><strong>Διεύθυνση:</strong> {{building.address}} - {{building.addressNumber}}</li>
-        <li><strong>Συνολικά Διαμερίσματα:</strong> {{ building.numberOfAppartments}}</li>
+        <li><strong>Συνολικά Διαμερίσματα:</strong> {{ building.numberOfApartments}}</li>
         <li><strong>Συνολικά Τετραγωνικά:</strong> {{ building.buldingSquareMeters}} m²</li>
         <li><strong>Συνολικοί Όροφοι:</strong> {{ building.numberOfFloors}}</li>
       </ul>
